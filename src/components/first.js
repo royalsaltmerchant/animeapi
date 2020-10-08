@@ -10,6 +10,7 @@ class First extends React.Component {
         super()
         this.state = {
             toggleView: 'on',
+            loadingtoggle: 'on',
             jikanUrl: '',
             searchNameInput: '',
             yourName: '',
@@ -61,6 +62,7 @@ class First extends React.Component {
         page = this.state.genrePage
         if(this.state.yourGenre !== '') {
             this.setState({
+                loadingtoggle: 'off',
                 jikanUrl: jikanBaseUrl + 'genre/anime/' + this.state.yourGenre + '/' + page,
             }, () => {
                 console.log(this.state.jikanUrl)
@@ -82,10 +84,11 @@ class First extends React.Component {
                     animeImage: [data['results'][0]['image_url']],
                     animeSynopsis: [data['results'][0]['synopsis']],
                     animeEpisodeCount: [data['results'][0]['episodes']],
-                    animeStartDate: [data['results'][0]['start_date']],
-                    animeEndDate: [data['results'][0]['end_date']],
                 }, () => {
                     console.log(this.state.animeImage)
+                    this.setState({
+                        loadingtoggle: 'on',
+                    })
                 })
         })
     }
@@ -100,6 +103,10 @@ class First extends React.Component {
                 this.setState({
                     genreTitles: [...this.state.genreTitles,<br/>,<li>{titleLoop}<br/><img src={imageLoop} alt="anime_photo"></img></li>],
                     loadMoreTitles: <button onClick={this.onSubmitGenre}>More Titles?</button>
+                }, () => {
+                    this.setState({
+                        loadingtoggle: 'on',
+                    })
                 })
             }
         })
@@ -109,9 +116,17 @@ class First extends React.Component {
         let displayAnimeInfo = {
             display: 'none'
         }
+        let loading = {
+            display: 'none'
+        }
         if(this.state.toggleView === 'off') {
             displayAnimeInfo = {
-                display: 'block'
+                display: ''
+            }
+        }
+        if(this.state.loadingtoggle === 'off') {
+            loading = {
+                display: ''
             }
         }
 
@@ -123,7 +138,7 @@ class First extends React.Component {
                 <div className="searchname">
                     <label htmlFor="name">Search by name</label>
                     <br/>
-                    <textarea name="name" value={this.state.searchNameInput} onChange={this.searchName} cols="50" rows="1"  placeholder="search by name" />
+                    <textarea className="name" name="name" value={this.state.searchNameInput} onChange={this.searchName} cols="50" rows="1"  placeholder="search by name" />
                 </div>
                 <br/>
                 <div className="submitnamediv">
@@ -139,6 +154,10 @@ class First extends React.Component {
                 <div className="submitgenrediv">
                     <button className="submitgenrebutton" onClick={this.onSubmitGenre}>Submit</button>
                 </div>
+                <br/>
+                <div className="loadingdiv" style={loading}>
+                <p>Searching...</p>
+                </div>
                 <div className="genreresponse">
                     <ul className="genretitles">{this.state.genreTitles}</ul>
                     <p>{this.state.loadMoreTitles}</p>
@@ -147,8 +166,6 @@ class First extends React.Component {
                 <div className="nameresponse" style={displayAnimeInfo}>
                     <p>{this.state.animeName}</p>
                     <p>Episode Count: {this.state.animeEpisodeCount}</p>
-                    <p>Start Date: {this.state.animeStartDate}</p>
-                    <p>End Date: {this.state.animeEndDate}</p>
                     <p><img src={this.state.animeImage} alt="anime_image"></img></p>
                     <p>{this.state.animeSynopsis}</p>
                 </div>

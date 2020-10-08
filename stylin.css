@@ -2,4 +2,22 @@ body {
     font-family: 'Arial';
     background-color: antiquewhite;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+
+.genretitles {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.genreselect {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 300px;
+    text-align: center;
 }

@@ -1,0 +1,114 @@
+[
+    {
+        "label": "Action",
+        "value": "1"
+    },
+    {
+        "label": "Adventure",
+        "value": "2"
+    },
+    {
+        "label": "Comedy",
+        "value": "4"
+    },
+    {
+        "label": "Mystery",
+        "value": "7"
+    },
+    {
+        "label": "Drama",
+        "value": "8"
+    },
+    {
+        "label": "Ecchi",
+        "value": "9"
+    },
+    {
+        "label": "Fantasy",
+        "value": "10"
+    },
+    {
+        "label": "Game",
+        "value": "11"
+    },
+    {
+        "label": "Historical",
+        "value": "13"
+    },
+    {
+        "label": "Horror",
+        "value": "14"
+    },
+    {
+        "label": "Martial Arts",
+        "value": "17"
+    },
+    {
+        "label": "Mecha",
+        "value": "18"
+    },
+    {
+        "label": "Music",
+        "value": "19"
+    },
+    {
+        "label": "Mecha",
+        "value": "18"
+    },
+    {
+        "label": "Samurai",
+        "value": "21"
+    },
+    {
+        "label": "Romance",
+        "value": "22"
+    },
+    {
+        "label": "School",
+        "value": "23"
+    },
+    {
+        "label": "Sci-Fi",
+        "value": "24"
+    },
+    {
+        "label": "Shoujo",
+        "value": "25"
+    },
+    {
+        "label": "Shounen",
+        "value": "27"
+    },
+    {
+        "label": "Sports",
+        "value": "30"
+    },
+    {
+        "label": "Harem",
+        "value": "35"
+    },
+    {
+        "label": "Slice Of Life",
+        "value": "36"
+    },
+    {
+        "label": "Supernatural",
+        "value": "37"
+    },
+    {
+        "label": "Military",
+        "value": "38"
+    },
+    {
+        "label": "Psychological",
+        "value": "39"
+    },
+    {
+        "label": "Seinen",
+        "value": "42"
+    },
+    {
+        "label": "Josei",
+        "value": "43"
+    }
+]

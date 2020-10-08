@@ -10,10 +10,11 @@ class First extends React.Component {
         super()
         this.state = {
             toggleView: 'on',
-            loadingtoggle: 'on',
+            loadingToggle: 'on',
             jikanUrl: '',
             searchNameInput: '',
             yourName: '',
+            nameTitles: [],
             searchGenreInput: '',
             yourGenre: '',
             genreTitles: [],
@@ -26,6 +27,7 @@ class First extends React.Component {
         this.onSubmitGenre = this.onSubmitGenre.bind(this)
         this.makeNameCall = this.makeNameCall.bind(this)
         this.makeGenreCall = this.makeGenreCall.bind(this)
+        this.onMoreInfo = this.onMoreInfo.bind(this)
     }
 
     searchName(event) {
@@ -50,6 +52,7 @@ class First extends React.Component {
         if(this.state.yourName !== '') {
             this.setState({
                 toggleView: 'off',
+                loadingToggle: 'off',
                 jikanUrl: jikanBaseUrl + 'search/anime?q=' + this.state.yourName,
             }, () => {
                 console.log(this.state.jikanUrl)
@@ -62,7 +65,7 @@ class First extends React.Component {
         page = this.state.genrePage
         if(this.state.yourGenre !== '') {
             this.setState({
-                loadingtoggle: 'off',
+                loadingToggle: 'off',
                 jikanUrl: jikanBaseUrl + 'genre/anime/' + this.state.yourGenre + '/' + page,
             }, () => {
                 console.log(this.state.jikanUrl)
@@ -74,22 +77,38 @@ class First extends React.Component {
         }
     }
 
+    onMoreInfo() {
+        this.setState({
+            loadingToggle: 'off',
+        })
+    }
+
     makeNameCall() {    
         fetch(this.state.jikanUrl)
         .then(response => response.json())
         .then(data => {
             console.log(data)
+            for(var j = 0; j < data.['results'].length; j++) {
+                var animeName = [data['results'][j]['title']]
+                var animeImage = [data['results'][j]['image_url']]
+                var animeSynopsis = [data['results'][j]['synopsis']]
+                var animeEpisodeCount = [data['results'][j]['episodes']]
                 this.setState({
-                    animeName: [data['results'][0]['title']],
-                    animeImage: [data['results'][0]['image_url']],
-                    animeSynopsis: [data['results'][0]['synopsis']],
-                    animeEpisodeCount: [data['results'][0]['episodes']],
+                    nameTitles: [...this.state.nameTitles,
+                        <p>{animeName}</p>,
+                        <p>Episode Count: {animeEpisodeCount}</p>,
+                        <p><img src={animeImage} alt="anime_image"></img></p>,
+                        <p>{animeSynopsis}</p>,
+                        <button>More Info</button>,
+                        <br/>],
+                    
                 }, () => {
                     console.log(this.state.animeImage)
                     this.setState({
-                        loadingtoggle: 'on',
+                        loadingToggle: 'on',
                     })
                 })
+            }
         })
     }
 
@@ -164,10 +183,7 @@ class First extends React.Component {
                 </div>
                 <br/>
                 <div className="nameresponse" style={displayAnimeInfo}>
-                    <p>{this.state.animeName}</p>
-                    <p>Episode Count: {this.state.animeEpisodeCount}</p>
-                    <p><img src={this.state.animeImage} alt="anime_image"></img></p>
-                    <p>{this.state.animeSynopsis}</p>
+                    {this.state.nameTitles}
                 </div>
             </div>
         )

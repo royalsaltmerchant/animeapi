@@ -143,7 +143,7 @@ class First extends React.Component {
                 display: ''
             }
         }
-        if(this.state.loadingtoggle === 'off') {
+        if(this.state.loadingToggle === 'off') {
             loading = {
                 display: ''
             }

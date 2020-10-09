@@ -124,7 +124,7 @@ class First extends React.Component {
                     loadMoreTitles: <button onClick={this.onSubmitGenre}>More Titles?</button>
                 }, () => {
                     this.setState({
-                        loadingtoggle: 'on',
+                        loadingToggle: 'on',
                     })
                 })
             }

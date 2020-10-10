@@ -49,3 +49,8 @@ button {
     width: 300px;
     text-align: center;
 }
+
+.trailerframe {
+    width: 400px;
+    height: 400px;
+}

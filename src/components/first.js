@@ -11,6 +11,7 @@ class First extends React.Component {
         this.state = {
             toggleView: 'on',
             loadingToggle: 'on',
+            toggleMoreInfo: 'on',
             jikanUrl: '',
             searchNameInput: '',
             yourName: '',
@@ -80,30 +81,16 @@ class First extends React.Component {
     }
 
     onMoreInfo(event) {
-        // console.log(event.target.value)
+        console.log(event.target.value)
         this.setState({
-            moreInfoName: event.target.value,
+            moreInfoMalId: event.target.value,
             toggleView: 'on',
-            loadingToggle: 'off',
+            toggleMoreInfo: 'off'
         }, () => {
-            console.log(this.state.moreInfoName)
-            this.setState({
-                jikanUrl: jikanBaseUrl + 'search/anime?q=' + this.state.moreInfoName,
-            }, () => {
-                console.log(this.state.jikanUrl)
-                fetch(this.state.jikanUrl)
-                .then(response => response.json())
-                .then(data => {
-                    this.setState({
-                        moreInfoMalId: [data['results'][0]['mal_id']]
-                    }, () => {
-                        console.log(this.state.moreInfoMalId)
-                        this.onMoreInfoContinue()
-                    })
-                })
-            })
+            this.onMoreInfoContinue()
         })
     }
+
 
     onMoreInfoContinue() {
         this.setState({
@@ -116,10 +103,21 @@ class First extends React.Component {
                 console.log(data)
                 this.setState({
                     animeTitle: [data['title']],
-                    animeImage: [data['image_url']]
+                    animeTitleEnglish: [data['title_english']],
+                    animeTitleJapanese: [data['title_japanese']],
+                    animeTitlesOthers: [data['title_synonyms']],
+                    animeImage: [data['image_url']],
+                    animeSynopsis: [data['synopsis']],
+                    animeTrailer: [data['trailer_url']],
+                    animeType: [data['type']],
+                    animeSource: [data['source']],
+                    animeEpisodeCount: [data['episodes']],
+                    animeStatus: [data['status']],
+                    animeAired: [data['aired']['string']],
                 }, () => {
                     this.setState({
                         loadingToggle: 'on',
+                        toggleMoreInfo: 'off'
                     })
                 })
             })
@@ -133,6 +131,7 @@ class First extends React.Component {
             // console.log(data)
             for(var j = 0; j < data['results'].length / 2; j++) {
                 var animeName = [data['results'][j]['title']]
+                var animeCode = [data['results'][j]['mal_id']]
                 var animeImage = [data['results'][j]['image_url']]
                 var animeSynopsis = [data['results'][j]['synopsis']]
                 var animeEpisodeCount = [data['results'][j]['episodes']]
@@ -143,7 +142,7 @@ class First extends React.Component {
                         <p>Episode Count: {animeEpisodeCount}</p>,
                         <p><img src={animeImage} alt="anime_image"></img></p>,
                         <p>{animeSynopsis}</p>,
-                        <button value={animeName} onClick={this.onMoreInfo}>More Info</button>,
+                        <button value={animeCode} onClick={this.onMoreInfo}>More Info</button>,
                         <br/>]],
                     
                 }, () => {
@@ -162,10 +161,11 @@ class First extends React.Component {
             for(var i = 0; i < data['anime'].length; i++) {
                 var titleLoop = [data['anime'][i]['title']]
                 var imageLoop = [data['anime'][i]['image_url']]
+                var titleCode = [data['anime'][i]['mal_id']]
                 this.setState({
                     genreTitles: [...this.state.genreTitles,
                     <br/>,
-                    <li style={{flexDirection: 'column'}}>{titleLoop}<br/><img src={imageLoop} alt="anime_photo"></img><br/><button value={titleLoop} onClick={this.onMoreInfo}>More Info</button></li>],
+                    <li style={{flexDirection: 'column'}}>{titleLoop}<br/><img src={imageLoop} alt="anime_photo"></img><br/><button value={titleCode} onClick={this.onMoreInfo}>More Info</button></li>],
                     loadMoreTitles: <button onClick={this.onSubmitGenre}>More?</button>
                 }, () => {
                     this.setState({
@@ -183,6 +183,9 @@ class First extends React.Component {
         let loading = {
             display: 'none'
         }
+        let displayMoreInfo = {
+            display: 'none'
+        }
         if(this.state.toggleView === 'off') {
             displaySearch = {
                 display: ''
@@ -193,12 +196,22 @@ class First extends React.Component {
                 display: ''
             }
         }
+        if(this.state.toggleMoreInfo === 'off') {
+            displayMoreInfo = {
+                display: ''
+            }
+        }
 
         return(
             <div>
                 <div className="header">
                     <h1>Anime search</h1>
+                    <p><i>myanimelist.net</i></p>
+                    <p><i>Jikan API</i></p>
+                <br/>
+                <hr/>
                 </div>
+                <br/>
                 <div className="searchname">
                     <label htmlFor="name">Search by name</label>
                     <br/>
@@ -232,13 +245,19 @@ class First extends React.Component {
                     {this.state.nameTitles}
                 </div>
                 <br/>
-                <div className="moreinfo">
-                    <p>{this.state.animeTitle}</p>
+                <div className="moreinfo" style={displayMoreInfo}>
+                    <p><b>{this.state.animeTitle}</b></p>
+                    <p>English Title: {this.state.animeTitleEnglish}</p>
+                    <p>Japanese Title: {this.state.animeTitleJapanese}</p>
+                    <p>Other Titles: {this.state.animeTitlesOthers}</p>
+                    <p>Type: {this.state.animeType}</p>
+                    <p>Source: {this.state.animeSource}</p>
+                    <p>Episode Count: {this.state.animeEpisodeCount}</p>
+                    <p>Status: {this.state.animeStatus}</p>
+                    <p>Aired: {this.state.animeAired}</p>
                     <p><img src={this.state.animeImage} alt="cover art"></img></p>
-                    <p>{this.state.animeTitle}</p>
-                    <p>{this.state.animeTitle}</p>
-                    <p>{this.state.animeTitle}</p>
-                    <p>{this.state.animeTitle}</p>
+                    <p>{this.state.animeSynopsis}</p>
+                    <p><iframe className="trailerframe" src={this.state.animeTrailer} title="Trailer"></iframe></p>
                 </div>
             </div>
         )

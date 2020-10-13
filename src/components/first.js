@@ -124,7 +124,13 @@ class First extends React.Component {
         })
     }
 
-    makeNameCall() {    
+    makeNameCall() {
+        this.setState({
+            nameTitles: [],
+            genreTitles: [],
+            loadMoreTitles: '',
+            toggleMoreInfo: 'on'
+        })    
         fetch(this.state.jikanUrl)
         .then(response => response.json())
         .then(data => {
@@ -154,7 +160,12 @@ class First extends React.Component {
         })
     }
 
-    makeGenreCall() {    
+    makeGenreCall() {
+        this.setState({
+            genreTitles: [],
+            nameTitles: [],
+            toggleMoreInfo: 'on'
+        }) 
         fetch(this.state.jikanUrl)
         .then(response => response.json())
         .then(data => {

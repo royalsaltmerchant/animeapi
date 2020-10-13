@@ -245,7 +245,6 @@ class First extends React.Component {
                 </div>
                 <br/>
                 <div className="loadingdiv" style={loading}>
-                <p>Searching...</p>
                 </div>
                 <div className="genreresponse" style={displaySearch}>
                     <ul className="genretitles">{this.state.genreTitles}</ul>

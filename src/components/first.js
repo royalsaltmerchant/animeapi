@@ -105,7 +105,6 @@ class First extends React.Component {
                     animeTitle: [data['title']],
                     animeTitleEnglish: [data['title_english']],
                     animeTitleJapanese: [data['title_japanese']],
-                    animeTitlesOthers: [data['title_synonyms']],
                     animeImage: [data['image_url']],
                     animeSynopsis: [data['synopsis']],
                     animeTrailer: [data['trailer_url']],
@@ -114,6 +113,8 @@ class First extends React.Component {
                     animeEpisodeCount: [data['episodes']],
                     animeStatus: [data['status']],
                     animeAired: [data['aired']['string']],
+                    animeDuration: [data['duration']],
+                    animeStudioName: [data['studios'][0]['name']]
                 }, () => {
                     this.setState({
                         loadingToggle: 'on',
@@ -259,15 +260,17 @@ class First extends React.Component {
                     <p><b>{this.state.animeTitle}</b></p>
                     <p>English Title: {this.state.animeTitleEnglish}</p>
                     <p>Japanese Title: {this.state.animeTitleJapanese}</p>
-                    <p>Other Titles: {this.state.animeTitlesOthers}</p>
+                    <p>Studio: {this.state.animeStudioName}</p>
                     <p>Type: {this.state.animeType}</p>
                     <p>Source: {this.state.animeSource}</p>
                     <p>Episode Count: {this.state.animeEpisodeCount}</p>
+                    <p>Duration: {this.state.animeDuration}</p>
                     <p>Status: {this.state.animeStatus}</p>
                     <p>Aired: {this.state.animeAired}</p>
                     <p><img src={this.state.animeImage} alt="cover art"></img></p>
                     <p>{this.state.animeSynopsis}</p>
-                    <p><iframe className="trailerframe" src={this.state.animeTrailer} title="Trailer"></iframe></p>
+                    <p><b>Trailer:</b></p>
+                    <iframe className="trailerframe" src={this.state.animeTrailer} title="Trailer"></iframe>
                 </div>
             </div>
         )

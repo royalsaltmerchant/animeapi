@@ -22,6 +22,8 @@ button {
 }
 
 .name {
+    white-space: nowrap;
+    outline: none;
     height: 200x;
     width:400px;
     border-radius: 5px;
@@ -31,7 +33,7 @@ button {
 
 .nameresponse {
     margin: auto;
-    width: 400px;
+    width: 350px;
 }
 
 .genretitles {
@@ -72,5 +74,4 @@ button {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-}
 }

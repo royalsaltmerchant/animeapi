@@ -191,9 +191,11 @@ class First extends React.Component {
     render() {
         let displaySearch = {
             display: 'none'
+
         }
         let loading = {
             display: 'none'
+            
         }
         let displayMoreInfo = {
             display: 'none'
@@ -217,7 +219,7 @@ class First extends React.Component {
         return(
             <div>
                 <div className="header">
-                    <h1>Anime search</h1>
+                    <h1>Anime</h1>
                     <p><i>myanimelist.net</i></p>
                     <p><i>Jikan API</i></p>
                 <br/>
@@ -225,24 +227,24 @@ class First extends React.Component {
                 </div>
                 <br/>
                 <div className="searchname">
-                    <label htmlFor="name">Search by name</label>
+                    <label htmlFor="name"><b>Search by Name</b></label>
                     <br/>
                     <textarea className="name" name="name" value={this.state.searchNameInput} onChange={this.searchName} cols="50" rows="1"  placeholder="search by name" />
                 </div>
                 <br/>
                 <div className="submitnamediv">
-                    <button className="submitnamebutton" onClick={this.onSubmitName}>Submit</button>
+                    <button className="submitnamebutton" onClick={this.onSubmitName}>Search</button>
                 </div>
                 <br/>
                 <div className="searchgenre">
-                    <label htmlFor="genre">Search by genre</label>
+                    <label htmlFor="genre"><b>Search by Genre</b></label>
                     <br/>
                     <br/>
                     <Select className="genreselect" name="genre" value={this.state.searchGenreInput} onChange={this.searchGenre} options={genreMap} placeholder="search by genre" />
                 </div>
                 <br/>
                 <div className="submitgenrediv">
-                    <button className="submitgenrebutton" onClick={this.onSubmitGenre}>Submit</button>
+                    <button className="submitgenrebutton" onClick={this.onSubmitGenre}>Search</button>
                 </div>
                 <br/>
                 <div className="loadingdiv" style={loading}>
@@ -251,13 +253,13 @@ class First extends React.Component {
                     <ul className="genretitles">{this.state.genreTitles}</ul>
                     <p>{this.state.loadMoreTitles}</p>
                 </div>
-                <br/>
                 <div className="nameresponse" style={displaySearch}>
                     {this.state.nameTitles}
                 </div>
                 <br/>
+                <h2 style={displayMoreInfo}><b>{this.state.animeTitle}</b></h2>
                 <div className="moreinfo" style={displayMoreInfo}>
-                    <p><b>{this.state.animeTitle}</b></p>
+                    <div className="moreinfo-upper-text">
                     <p>English Title: {this.state.animeTitleEnglish}</p>
                     <p>Japanese Title: {this.state.animeTitleJapanese}</p>
                     <p>Studio: {this.state.animeStudioName}</p>
@@ -267,10 +269,14 @@ class First extends React.Component {
                     <p>Duration: {this.state.animeDuration}</p>
                     <p>Status: {this.state.animeStatus}</p>
                     <p>Aired: {this.state.animeAired}</p>
-                    <p><img src={this.state.animeImage} alt="cover art"></img></p>
+                    </div>
+                    <p><img className="cover-art" src={this.state.animeImage} alt="cover art"></img></p>
+                    <div className="moreinfo-lower-text">
+                    <p><b>Synopsis:</b></p>
                     <p>{this.state.animeSynopsis}</p>
                     <p><b>Trailer:</b></p>
                     <iframe className="trailerframe" src={this.state.animeTrailer} title="Trailer"></iframe>
+                    </div>
                 </div>
             </div>
         )

@@ -45,6 +45,7 @@ class First extends React.Component {
         this.setState({
             searchGenreInput: event,
             yourGenre: event.value,
+            genrePage: 1
         }, () => {
             console.log(this.state.yourGenre)
         })

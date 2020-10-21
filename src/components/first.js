@@ -154,6 +154,7 @@ class First extends React.Component {
                         <br/>]],
                     
                 }, () => {
+                    window.scrollTo(0, 600)
                     this.setState({
                         loadingToggle: 'on',
                     })
@@ -181,6 +182,7 @@ class First extends React.Component {
                     <li style={{flexDirection: 'column'}}>{titleLoop}<br/><img src={imageLoop} alt="anime_photo"></img><br/><button value={titleCode} onClick={this.onMoreInfo}>More Info</button></li>],
                     loadMoreTitles: <button onClick={this.onSubmitGenre}>More?</button>
                 }, () => {
+                    window.scrollTo(0, 540)
                     this.setState({
                         loadingToggle: 'on',
                     })

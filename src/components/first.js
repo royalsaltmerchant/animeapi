@@ -117,6 +117,7 @@ class First extends React.Component {
                     animeDuration: [data['duration']],
                     animeStudioName: [data['studios'][0]['name']]
                 }, () => {
+                    window.scrollTo(0, 600)
                     this.setState({
                         loadingToggle: 'on',
                         toggleMoreInfo: 'off'

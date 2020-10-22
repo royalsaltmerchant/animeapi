@@ -180,7 +180,7 @@ class First extends React.Component {
                 this.setState({
                     genreTitles: [...this.state.genreTitles,
                     <br/>,
-                    <li style={{flexDirection: 'column'}}>{titleLoop}<br/><img src={imageLoop} alt="anime_photo"></img><br/><button value={titleCode} onClick={this.onMoreInfo}>More Info</button></li>],
+                    <li style={{flexDirection: 'column'}}>{titleLoop}<br/><img src={imageLoop} alt="anime_photo"></img><br/><button value={titleCode} onClick={this.onMoreInfo}>Info</button></li>],
                     loadMoreTitles: <button onClick={this.onSubmitGenre}>More?</button>
                 }, () => {
                     window.scrollTo(0, 540)

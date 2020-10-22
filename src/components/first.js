@@ -227,7 +227,6 @@ class First extends React.Component {
                     <p><i>myanimelist.net</i></p>
                     <p><i>Jikan API</i></p>
                 <br/>
-                <hr/>
                 </div>
                 <br/>
                 <div className="searchname">

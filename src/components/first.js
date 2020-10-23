@@ -117,7 +117,7 @@ class First extends React.Component {
                     animeDuration: [data['duration']],
                     animeStudioName: [data['studios'][0]['name']]
                 }, () => {
-                    window.scrollTo(0, 600)
+                    window.scrollTo(0, 575)
                     this.setState({
                         loadingToggle: 'on',
                         toggleMoreInfo: 'off'
@@ -155,7 +155,7 @@ class First extends React.Component {
                         <br/>]],
                     
                 }, () => {
-                    window.scrollTo(0, 600)
+                    window.scrollTo(0, 575)
                     this.setState({
                         loadingToggle: 'on',
                     })
@@ -183,7 +183,7 @@ class First extends React.Component {
                     <li style={{flexDirection: 'column'}}>{titleLoop}<br/><img src={imageLoop} alt="anime_photo"></img><br/><button value={titleCode} onClick={this.onMoreInfo}>Info</button></li>],
                     loadMoreTitles: <button onClick={this.onSubmitGenre}>More?</button>
                 }, () => {
-                    window.scrollTo(0, 540)
+                    window.scrollTo(0, 530)
                     this.setState({
                         loadingToggle: 'on',
                     })
